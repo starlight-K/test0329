@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test0329
+    username: root
+    password: lzq123
+  thymeleaf:
+    cache: false # 开发阶段关闭缓存，上线之后开启缓存
+    prefix: classpath:/templates/ # 前缀
+    suffix: .html # 后缀
+mybatis-plus:
+  type-aliases-package: com.test.entity # 实体类别名扫描
+  configuration:
+    map-underscore-to-camel-case: false # 取消驼峰命名
+logging:
+  level:
+    com.test.mapper: debug
+

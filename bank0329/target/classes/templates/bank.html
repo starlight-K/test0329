@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="欢迎您：+ ${session.user.username}">请选择以下操作</h1>
+<h2 th:if="${balance!=null}"> <span>提示： 您的余额为</span> [[${balance}]] <span>元</span></h2>
+<h2 th:if="${msg!=null}"> <span>提示： </span>[[${msg}]]</h2>
+
+<span> <a th:href="'/money/balance/'+${session.user.uid}">查询余额</a></span>
+<br><br>
+
+<form method="post" th:action="'/money/consume/'+${session.user.uid}">
+    <input type="text" placeholder="请输入消费金额" name="money">
+    <button>消费</button>
+    <br><br>
+</form>
+
+<form method="post"  th:action="'/money/drawback/'+${session.user.uid}">
+    <input type="text" placeholder="请输入退款金额" name="money">
+    <button>退款</button><br><br>
+</form>
+
+<a th:href="'/money/detail/'+${session.user.uid}">查询钱包金额细眀</a>
+
+<table th:if="${list!=null}" border="0" placeholder="">
+    <tr>
+        <th>余额</th>
+        <th>余额细明</th>
+        <th>操作时间</th>
+    </tr>
+    <tr th:each="list : ${list}">
+        <td th:text="${list.balance}"></td>
+        <td th:text="${list.detail}"></td>
+        <td th:text="${list.changeTime}"></td>
+    </tr>
+</table>
+</body>
+</html>
